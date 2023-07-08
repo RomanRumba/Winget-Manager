@@ -12,6 +12,6 @@ I recommend having this tool on your packaging machine, that way you will be abl
 The searching capabilities of this tool are far from perfect, it uses crude parsing script that i made to parse the ***Winget Search*** output into a object, it tends to break for some search results that have a ton of weird characters.
 
 ## How to create an executable for Windows
-* Set the variable ***INDEV*** scripts/js/preload.js to ***false***
+* Set the variable ***INDEV*** that is located in scripts/js/preload.js to ***false***
 * Run command ***electron-packager ./ Winget-Manager --platform=win32 --arch=x64*** 
 * And you are done!
