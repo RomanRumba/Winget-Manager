@@ -1,7 +1,7 @@
 const fs = require('fs');
 const os = require("os");
 const {shell} = require('electron') 
-const INDEV = true;
+const INDEV = true; // change this to false when you want to do a production build
 
 const INNTUNEINSTALLSCRIPTKEY = "INNTUNEINSTALLSCRIPTKEY";
 const INNTUNEUNINSTALLSCRIPTKEY = "INNTUNEUNINSTALLSCRIPTKEY";
