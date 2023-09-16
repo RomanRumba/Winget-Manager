@@ -29,6 +29,16 @@ body {
     margin-top: 1em;
 }
 
+.mt-3
+{
+    margin-top: 1.5em;
+}
+
+.mt-4
+{
+    margin-top: 2em;
+}
+
 .ml-1 {
     margin-left: 0.5em;
 }
@@ -406,6 +416,12 @@ table td {
     color: #000;
     text-decoration: none;
     cursor: pointer;
+}
+
+.installAndUninstallFields {
+    width: 98%;
+    padding: 0.5em;
+    outline: none;
 }
 
 .modal-textarea {

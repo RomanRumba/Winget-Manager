@@ -6,6 +6,8 @@ const INDEV = true; // change this to false when you want to do a production bui
 const INNTUNEINSTALLSCRIPTKEY = "INNTUNEINSTALLSCRIPTKEY";
 const INNTUNEUNINSTALLSCRIPTKEY = "INNTUNEUNINSTALLSCRIPTKEY";
 const INNTUNEDETECTIONSCRIPTKEY = "INNTUNEDETECTIONSCRIPTKEY";
+const INTUNEINSTALLCOMMANDKEY = "INTUNEINSTALLCOMMANDKEY";
+const INTUNEUNINSTALLCOMMANDKEY = "INTUNEUNINSTALLCOMMANDKEY";
 
 let wingetSearchInputRef;
 let notificationWrapperRef;
@@ -35,7 +37,12 @@ let copydetectionscriptRef;
 let generateInntunePackRef
 let inntuneScriptGeneratorTextRef;
 let exportAppListBtnRef;
-
+let inntuneInstallCommandRef;
+let inntuneUninstallCommandRef;
+let intuneinstallcommandgenRef;
+let intuneuninstallcommandgenRef;
+let copyintuneinstallcommandRef;
+let copyintuneuninstallcommandRef;
 // Contains a raw string table of all the installed apps on the client
 // this can later be used to look up IDs to present uninstall button
 let currentAppsInstalledRAW = "";
@@ -73,6 +80,12 @@ window.addEventListener('DOMContentLoaded', () => {
   generateInntunePackRef = document.getElementById('generateInntunePack');
   inntuneScriptGeneratorTextRef = document.getElementById('inntuneScriptGeneratorText');
   exportAppListBtnRef = document.getElementById('exportAppListBtn');
+  inntuneInstallCommandRef  = document.getElementById('inntune-installCommand');
+  inntuneUninstallCommandRef  = document.getElementById('inntune-uninstallCommand');
+  intuneinstallcommandgenRef = document.getElementById('intuneinstallcommand');
+  intuneuninstallcommandgenRef = document.getElementById('intuneuninstallcommand');
+  copyintuneinstallcommandRef =document.getElementById('copyintuneinstallcommand');
+  copyintuneuninstallcommandRef =document.getElementById('copyintuneuninstallcommand');
   // Add the listeners
  
   helpModalRef.style.display = "block"; 
@@ -91,6 +104,16 @@ window.addEventListener('DOMContentLoaded', () => {
     }
   }
  
+  copyintuneinstallcommandRef.onclick = function()
+  {
+    navigator.clipboard.writeText(intuneinstallcommandgenRef.value);
+  }
+
+  copyintuneuninstallcommandRef.onclick = function()
+  {
+    navigator.clipboard.writeText(intuneuninstallcommandgenRef.value);
+  }
+  
   exportAppListBtnRef.onclick = function()
   {
     exportAppList();
@@ -118,6 +141,14 @@ window.addEventListener('DOMContentLoaded', () => {
 
   intuneInstallScriptRef.onchange = function () {
     localStorage.setItem(INNTUNEINSTALLSCRIPTKEY, intuneInstallScriptRef.value);
+  }
+
+  inntuneInstallCommandRef.onchange = function () {
+    localStorage.setItem(INTUNEINSTALLCOMMANDKEY, inntuneInstallCommandRef.value);
+  }
+
+  inntuneUninstallCommandRef.onchange = function () {
+    localStorage.setItem(INTUNEUNINSTALLCOMMANDKEY, inntuneUninstallCommandRef.value);
   }
 
   intuneUninstallScriptRef.onchange = function () {
@@ -160,6 +191,8 @@ window.addEventListener('DOMContentLoaded', () => {
     let installScript = localStorage.getItem(INNTUNEINSTALLSCRIPTKEY);
     let uninstallScript = localStorage.getItem(INNTUNEUNINSTALLSCRIPTKEY);
     let detectopmScript = localStorage.getItem(INNTUNEDETECTIONSCRIPTKEY);
+    let intuneInstallCommand = localStorage.getItem(INTUNEINSTALLCOMMANDKEY);
+    let intuneUninstallCommand = localStorage.getItem(INTUNEUNINSTALLCOMMANDKEY);
 
     if (installScript !== null) {
       intuneInstallScriptRef.textContent = installScript;
@@ -169,6 +202,14 @@ window.addEventListener('DOMContentLoaded', () => {
     }
     if (detectopmScript !== null) {
       intuneDetectionScriptRef.textContent = detectopmScript;
+    }
+    if(intuneInstallCommand !== null)
+    {
+      inntuneInstallCommandRef.value = intuneInstallCommand;
+    }
+    if(intuneUninstallCommand !== null)
+    {
+      inntuneUninstallCommandRef.value = intuneUninstallCommand;
     }
     inntuneModalRef.style.display = "block";
   }
@@ -255,6 +296,8 @@ function GenerateInntuneInstallProcedure(event) {
   let installScript = localStorage.getItem(INNTUNEINSTALLSCRIPTKEY);
   let uninstallScript = localStorage.getItem(INNTUNEUNINSTALLSCRIPTKEY);
   let detectopmScript = localStorage.getItem(INNTUNEDETECTIONSCRIPTKEY);
+  let intuneInstallCommand =localStorage.getItem(INTUNEINSTALLCOMMANDKEY);
+  let intuneUninstallCommand=localStorage.getItem(INTUNEUNINSTALLCOMMANDKEY);
 
   if (installScript !== null) {
     installScript = installScript.replaceAll('${{name}}', nameOfPackage);
@@ -285,6 +328,16 @@ function GenerateInntuneInstallProcedure(event) {
   }
   else {
     detectionprocedurescriptRef.value = "No Script found, Please check 'Configure Inntune section'";
+  }
+
+  if(intuneInstallCommand !== null)
+  {
+    intuneinstallcommandgenRef.value = intuneInstallCommand;
+  }
+
+  if(intuneUninstallCommand !== null)
+  {
+    intuneuninstallcommandgenRef.value = intuneUninstallCommand;
   }
 
   inntuneInstallProcedureModalRef.style.display = "block";

@@ -115,7 +115,7 @@
                     </ul>
                 </span>
             </div>
-
+           
             <div class="modal-textarea">
                 <h3>Install Script:</h3>
                 <textarea id="inntune-installscript" rows="10"
@@ -132,6 +132,25 @@
                 <h3>Detection Script:</h3>
                 <textarea id="inntune-detectionscript" rows="10"
                     placeholder="Paste your detection script here, remember to add the variables that are mentioned above"></textarea>
+            </div>
+
+            <div class="InfoBanner mt-2">
+                <svg width="62px" height="62px" viewBox="-7 -7 34.00 34.00" fill="none">
+                    <path fill="#000000" fill-rule="evenodd"
+                        d="M10 3a7 7 0 100 14 7 7 0 000-14zm-9 7a9 9 0 1118 0 9 9 0 01-18 0zm8-4a1 1 0 011-1h.01a1 1 0 110 2H10a1 1 0 01-1-1zm.01 8a1 1 0 102 0V9a1 1 0 10-2 0v5z">
+                    </path>
+                </svg>
+                <span class="infoBannerContent"> 
+                   If you decide to generate a .intunewin file then these two commands can be copy-pasted in Intune to call the installation and uninstallation scriots inside the .intunewin file
+                </span>
+            </div>
+            <div class="mt-3">
+                <h3>Install Command:</h3>
+                <input id="inntune-installCommand" class="installAndUninstallFields" type="text">
+            </div>
+            <div class="mt-3">
+                <h3>Uninstall Command:</h3>
+                <input id="inntune-uninstallCommand" class="installAndUninstallFields" type="text">
             </div>
 
         </div>
@@ -185,7 +204,37 @@
                 </div>
                 <div class="text">Copy Detection</div>
             </button>
+            
+            <div class="mt-4">
+                <h3>Install Command:</h3>
+                <input id="intuneinstallcommand" class="installAndUninstallFields" type="text">
+            </div>
+            <button class="operationsButton largerOperationsButton mt-1" id="copyintuneinstallcommand">
+                <div class="icon">
+                    <svg viewBox="0 0 32 32">
+                        <path
+                            d="M30.731 8.16c-0.005-0.035-0.011-0.066-0.019-0.095l0.001 0.005c-0.031-0.134-0.094-0.249-0.182-0.342l0 0-6.297-6.296c-0.093-0.087-0.208-0.15-0.336-0.181l-0.005-0.001c-0.026-0.008-0.058-0.014-0.091-0.019l-0.004-0c-0.026-0.007-0.059-0.014-0.092-0.018l-0.004-0h-9.445c-0.414 0-0.75 0.336-0.75 0.75v0 22.038c0 0.414 0.336 0.75 0.75 0.75h15.742c0.414-0 0.75-0.336 0.75-0.75v0-15.742c-0.005-0.038-0.012-0.071-0.020-0.103l0.001 0.005zM24.453 3.773l3.736 3.735h-3.736zM15.008 23.25v-20.538h7.945v5.546c0 0.414 0.336 0.75 0.75 0.75h5.547v14.242zM17.742 27.25c-0.414 0-0.75 0.336-0.75 0.75v0 1.27h-14.242v-20.539h7.25c0.414 0 0.75-0.336 0.75-0.75s-0.336-0.75-0.75-0.75v0h-8c-0.414 0-0.75 0.336-0.75 0.75v0 22.039c0 0.414 0.336 0.75 0.75 0.75h15.742c0.414-0 0.75-0.336 0.75-0.75v0-2.020c-0-0.414-0.336-0.75-0.75-0.75v0z">
+                        </path>
+                    </svg>
+                </div>
+                <div class="text">Copy Install</div>
+            </button>
 
+            <div class="mt-3">
+                <h3>Uninstall Command:</h3>
+                <input id="intuneuninstallcommand" class="installAndUninstallFields" type="text">
+            </div>
+            <button class="operationsButton largerOperationsButton mt-1" id="copyintuneuninstallcommand">
+                <div class="icon">
+                    <svg viewBox="0 0 32 32">
+                        <path
+                            d="M30.731 8.16c-0.005-0.035-0.011-0.066-0.019-0.095l0.001 0.005c-0.031-0.134-0.094-0.249-0.182-0.342l0 0-6.297-6.296c-0.093-0.087-0.208-0.15-0.336-0.181l-0.005-0.001c-0.026-0.008-0.058-0.014-0.091-0.019l-0.004-0c-0.026-0.007-0.059-0.014-0.092-0.018l-0.004-0h-9.445c-0.414 0-0.75 0.336-0.75 0.75v0 22.038c0 0.414 0.336 0.75 0.75 0.75h15.742c0.414-0 0.75-0.336 0.75-0.75v0-15.742c-0.005-0.038-0.012-0.071-0.020-0.103l0.001 0.005zM24.453 3.773l3.736 3.735h-3.736zM15.008 23.25v-20.538h7.945v5.546c0 0.414 0.336 0.75 0.75 0.75h5.547v14.242zM17.742 27.25c-0.414 0-0.75 0.336-0.75 0.75v0 1.27h-14.242v-20.539h7.25c0.414 0 0.75-0.336 0.75-0.75s-0.336-0.75-0.75-0.75v0h-8c-0.414 0-0.75 0.336-0.75 0.75v0 22.039c0 0.414 0.336 0.75 0.75 0.75h15.742c0.414-0 0.75-0.336 0.75-0.75v0-2.020c-0-0.414-0.336-0.75-0.75-0.75v0z">
+                        </path>
+                    </svg>
+                </div>
+                <div class="text">Copy Uninstall</div>
+            </button>
+            
             <button class="SubmitBtn" id="generateInntunePack">Generate .intunewin file</button>
 
             <p class="modal-text mt-2" id="inntuneScriptGeneratorText"></p>
@@ -209,13 +258,14 @@
                 </div>
                 This tool was made to automate some of the copy-paste tasks that come with adding multiple applications with Winget to Microsoft Intune. First click on the 'Configure Templates' button and follow the steps that are listed there to create installation, uninstallation and detection templates. 
                 
-                Next search for the application that you want and click the 'Add Intune' button which will generate scripts from the templates that you defined. If you are in need of packaging the application as a win32 app, simply click the 'Generate .intunewin file' to create a 'install.intunewin' file that will contain the installation and uninstallation scripts. 
+                Next search for the application that you want and click the 'Generate' button which will generate scripts from the templates that you defined. If you are in need of packaging the application as a win32 app, simply click the 'Generate .intunewin file' to create a 'install.intunewin' file that will contain the installation and uninstallation scripts. 
                 
-                You can also click on the 'Local Install' button to install the application. I recommend having this tool on your packaging machine, that way you will be able to install and test the application and if all goes well just simply click the 'Add Intune' button to generate all the needed scripts. This also pairs well with the 'Export App List' button which will generate a 'applist.json' file with all the apps that you have installed so far.
+                You can also click on the 'Local Install' button to install the application. I recommend having this tool on your packaging machine, that way you will be able to install and test the application and if all goes well just simply click the 'Generate' button to generate all the needed scripts. This also pairs well with the 'Export App List' button which will generate a 'applist.json' file with all the apps that you have installed so far.
+            
+                
             </div>
         </div>
     </div>
-
 
     <!---- Template for the operation buttons which appear in the table -->
     <div class="operationsSection HideMe" id="operationsTemplate">
@@ -235,7 +285,7 @@
                     <path
                         d="M7.462 0H0v7.19h7.462V0zM16 0H8.538v7.19H16V0zM7.462 8.211H0V16h7.462V8.211zm8.538 0H8.538V16H16V8.211z" />
                 </svg></div>
-            <div class="text"><span>Add Intune</span></div>
+            <div class="text"><span>Generate</span></div>
         </button>
         <button class="operationsButton HideMe uninstallLocal">
             <div class="icon">
