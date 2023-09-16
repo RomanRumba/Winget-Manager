@@ -16,4 +16,4 @@ The searching capabilities of this tool are far from perfect, it uses crude pars
 * Run command ***electron-packager ./ Winget-Manager --platform=win32 --arch=x64*** 
 * And you are done!
 
-Or download the executable [Here](https://github.com/RomanRumba/Winget-Manager/tree/v1.0.0)
+Or download the executable [Here](https://github.com/RomanRumba/Winget-Manager/tree/v1.3.0)
