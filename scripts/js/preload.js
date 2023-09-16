@@ -8,6 +8,9 @@ const INNTUNEUNINSTALLSCRIPTKEY = "INNTUNEUNINSTALLSCRIPTKEY";
 const INNTUNEDETECTIONSCRIPTKEY = "INNTUNEDETECTIONSCRIPTKEY";
 const INTUNEINSTALLCOMMANDKEY = "INTUNEINSTALLCOMMANDKEY";
 const INTUNEUNINSTALLCOMMANDKEY = "INTUNEUNINSTALLCOMMANDKEY";
+const DISPLAYHELPONLAUNCHKEY = "DISPLAYHELPONLAUNCHKEY";
+
+let shouldDisplayHelpOnStartUP = true;
 
 let wingetSearchInputRef;
 let notificationWrapperRef;
@@ -43,6 +46,7 @@ let intuneinstallcommandgenRef;
 let intuneuninstallcommandgenRef;
 let copyintuneinstallcommandRef;
 let copyintuneuninstallcommandRef;
+
 // Contains a raw string table of all the installed apps on the client
 // this can later be used to look up IDs to present uninstall button
 let currentAppsInstalledRAW = "";
@@ -87,8 +91,22 @@ window.addEventListener('DOMContentLoaded', () => {
   copyintuneinstallcommandRef =document.getElementById('copyintuneinstallcommand');
   copyintuneuninstallcommandRef =document.getElementById('copyintuneuninstallcommand');
   // Add the listeners
- 
-  helpModalRef.style.display = "block"; 
+  
+  shouldDisplayHelpOnStartUP = localStorage.getItem(DISPLAYHELPONLAUNCHKEY);
+  if(shouldDisplayHelpOnStartUP === null)
+  {
+    shouldDisplayHelpOnStartUP = false;
+  }
+  else
+  {
+    shouldDisplayHelpOnStartUP = true;
+  }
+
+  if(shouldDisplayHelpOnStartUP === false)
+  {
+    helpModalRef.style.display = "block"; 
+  }
+
   window.onclick = function (event) {
     if (event.target == installModalRef) {
       installModalRef.style.display = "none";
@@ -162,6 +180,7 @@ window.addEventListener('DOMContentLoaded', () => {
   helpCloseModalRef.onclick = function()
   {
     helpModalRef.style.display = "none";
+    localStorage.setItem(DISPLAYHELPONLAUNCHKEY,true);
   }
 
   installCloseModalRef.onclick = function () {
