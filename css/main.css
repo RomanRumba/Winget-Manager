@@ -275,6 +275,21 @@ table td {
     min-width: 180px;
 }
 
+.nonexpandableBtn
+{
+    padding: 0.5em;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    background-color: #69a5fe;
+    font-weight: 600;
+}
+
+.nonexpandableBtn:active {
+    transform: translate(2px, 2px);
+}
 /*-------------------------------------Operation buttons--------------------------------*/
 /*Credit : https://uiverse.io/kennyotsu-monochromia/spicy-quail-62*/
 .operationsButton {

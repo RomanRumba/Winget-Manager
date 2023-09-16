@@ -46,6 +46,7 @@ let intuneinstallcommandgenRef;
 let intuneuninstallcommandgenRef;
 let copyintuneinstallcommandRef;
 let copyintuneuninstallcommandRef;
+let loaddefaulttemplatevalsRef;
 
 // Contains a raw string table of all the installed apps on the client
 // this can later be used to look up IDs to present uninstall button
@@ -90,6 +91,7 @@ window.addEventListener('DOMContentLoaded', () => {
   intuneuninstallcommandgenRef = document.getElementById('intuneuninstallcommand');
   copyintuneinstallcommandRef =document.getElementById('copyintuneinstallcommand');
   copyintuneuninstallcommandRef =document.getElementById('copyintuneuninstallcommand');
+  loaddefaulttemplatevalsRef = document.getElementById('loaddefaulttemplatevals');
   // Add the listeners
   
   shouldDisplayHelpOnStartUP = localStorage.getItem(DISPLAYHELPONLAUNCHKEY);
@@ -122,6 +124,11 @@ window.addEventListener('DOMContentLoaded', () => {
     }
   }
  
+  loaddefaulttemplatevalsRef.onclick = function()
+  {
+    loadDefaultTemplateVals(true);
+  }
+
   copyintuneinstallcommandRef.onclick = function()
   {
     navigator.clipboard.writeText(intuneinstallcommandgenRef.value);
@@ -413,6 +420,36 @@ function hideNotifications() {
   notificationWrapperRef.setAttribute("hidden", "true");
   errorTextRef.setAttribute("hidden", "true");
   notificationTextRef.setAttribute("hidden", "true");
+}
+
+function loadDefaultTemplateVals(onlyLoadIntuneCommands)
+{
+  let pathToTemplates = ".\\scripts\\ps\\templates\\";
+  if(INDEV === false)
+  {
+    pathToTemplates = ".\\resources\\app\\scripts\\ps\\templates\\";
+  }
+ 
+  const installCommandTemplate = fs.readFileSync(pathToTemplates+"defaultIntuneInstallCommand.ps1", 'utf8');
+  const uninstallCommandTemplate = fs.readFileSync(pathToTemplates+"defaultIntuneUninstallCommand.ps1", 'utf8');
+
+  inntuneInstallCommandRef.value = installCommandTemplate;
+  inntuneUninstallCommandRef.value = uninstallCommandTemplate;
+  localStorage.setItem(INTUNEINSTALLCOMMANDKEY,installCommandTemplate);
+  localStorage.setItem(INTUNEUNINSTALLCOMMANDKEY,uninstallCommandTemplate);
+  
+  if(onlyLoadIntuneCommands === true)
+  {
+    const installTemplate = fs.readFileSync(pathToTemplates+"defaultInstall.ps1", 'utf8');
+    const uninstallTemplate = fs.readFileSync(pathToTemplates+"defaultUninstall.ps1", 'utf8');
+    const detectionTemplate = fs.readFileSync(pathToTemplates+"defaultDetection.ps1", 'utf8');
+    intuneInstallScriptRef.textContent = installTemplate;
+    intuneUninstallScriptRef.textContent = uninstallTemplate;
+    intuneDetectionScriptRef.textContent = detectionTemplate;
+    localStorage.setItem(INNTUNEINSTALLSCRIPTKEY,installTemplate);
+    localStorage.setItem(INNTUNEUNINSTALLSCRIPTKEY,uninstallTemplate);
+    localStorage.setItem(INNTUNEDETECTIONSCRIPTKEY,detectionTemplate);
+  }
 }
 
 //----------------------------------------------------------------------------------------------------

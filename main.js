@@ -7,7 +7,7 @@ const createWindow = () => {
   const mainWindow = new BrowserWindow({
     autoHideMenuBar: true,
     width: 1200,
-    height: 600,
+    height: 900,
     icon: './assets/favicon.ico',
     webPreferences: {
       preload: path.join(__dirname, 'scripts/js/preload.js'),
